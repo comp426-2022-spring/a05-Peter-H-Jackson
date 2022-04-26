@@ -4,7 +4,7 @@ const minimist = require('minimist')
 const morgan = require('morgan')
 const fs = require('fs')
 const cors = require('cors')
-const db = require('.src/services/database.js')
+const db = require('./src/services/database.js')
 
 // Start the express app
 const app = express()
@@ -13,7 +13,7 @@ app.use(cors())
 app.use(express.json())
 
 const argv = (minimist)(process.argv.slice(2))
-const HTTP_PORT = argv.port || 5000
+const port = argv.port || 5000
 if (argv.help) {
     console.log('server.js [options]\
         \n\
@@ -59,7 +59,7 @@ app.use((req, res, next) => {
     next()
     })
   
-if (args.debug || args.d){
+if (argv.debug || argv.d){
     app.get('/app/log/access/', (req, res, next) => {
         const stmt = logdb.prepare('SELECT * FROM accessLog').all()
         res.status(200).json(stmt)
