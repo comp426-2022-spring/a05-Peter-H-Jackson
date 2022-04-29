@@ -24,50 +24,84 @@
 	<meta name="msapplication-TileColor" content="#ffffff">
 	<meta name="msapplication-TileImage" content="assets/favicon/ms-icon-144x144.png">
 	<meta name="theme-color" content="#ffffff">
+
+  <!-- RUN main.js -->
+  <script src="main.js"></script>
+  
   </head>
+
+  <!-- VISIBLE HTML -->
   <body>
+    <!-- NAVIGATION BAR  -->
     <nav>
-      <button id="homenav">Home</button>
-      <button id="singlenav">Flip one coin</button>
-      <button id="multinav">Flip multiple coins</button>
-      <button id="guessnav">Guess the result</button>
-    </nav>
-    <div id="home">
-      <h5>To play a coin flipping game, please select from these buttons:</h5>
-    </div>    
-    <div id="single" class="hidden">
-      <h5>Flip one coin</h5>
-      <button onclick="flipCoin()"> Flip One Coin </button>
-      <p>Result: <span id="result"></span></p>
-      <img src="./assets/img/coin.png" id="coin">
-    </div>
-    <div id="multi" class="hidden">
-      <h5>Flip multiple coins</h5>
-      <form id="guessform">
-        <input type="number" id="number" placeholder="Enter number of flips" name="number" min="0">
-        <input type="submit" value="Flip">
-      </form>
-      <br>
-      <p>Summary:</p>
-      <p id="heads-result"></p>
-      <p id="tails-result"></p>
-      <br>
-      <p>Result:</p>
-      <div id = "results"></div>
-    </div>
-    <div id="guess" class="hidden">
-      <h5>Guess result</h5>
-      <button onclick="guessHeads()"> Guess Heads </button>
-      <button onclick="guessTails()"> Guess Tails </button>
-      <br>
-      <p>Calls: <span id="call-result"></span></p>
-      <img src="./assets/img/coin.png" id="cal1-coin">
-      <br>
-      <p>Flip: <span id="flips-result"></span></p>
-      <img src="./assets/img/coin.png" id="flip-coin">
-      <br>
-      <p>Result: <span id="guess-result"></span></p>
-    </div>
-	<script src="main.js"></script>
-  </body>
+      <button id="homenav" onclick="homeNav()" class="active">Home</button>
+      <button id="singlenav" onclick="singleNav()">Flip one coin</button>
+      <button id="multinav" onclick="multiNav()">Flip multiple coins</button>
+      <button id="guessnav" onclick="guessNav()">Guess the result</button>
+   </nav>
+   <!-- DIV CONTAINER -->
+   <div class=container>
+      <!-- HOME/LANDING PAGE -->
+      <div id="home" class="active">
+         <h1>Do you like virtually flipping coins?!</h1>
+         <p>Click the buttons above to decide how you want yout coins to be flipped. 
+      </div>
+      <!-- /APP/FLIP/ --> 
+      <div id="single" class="inactive">
+         <h1>Flip A Coin</h1>
+         <!-- COIN BUTTON THAT ACTIVATES THE /APP/FLIP/ API -->
+         <button id="coin">Flip it!</button>
+         <!-- LIST RESULT -->
+         <h2>Result:</h2>
+         <p><span id="result"></span></p>
+         <!-- US QUARTER IMAGE -->
+         <img src="assets/img/coin.png" id="quarter" class="bigcoin">      
+      </div>
+      <!-- /APP/FLIP/COINS/ -->
+      <div id="multi" class="inactive">
+         <h1>Flip Many Coins</h1>
+         <!-- FORM/BUTTON THAT ACTIVATES THE /APP/FLIP/COINS/ API -->
+         <form id="coins">
+            <label for="number">
+            <strong>Number of coins?</strong>
+            </label>
+            <input type="number" name="number" id="number">
+            <input type="submit" value="Flip the Coins!">
+         </form>
+         <h2>Results:</h2>
+         <!-- THESE GHOST PLACEHOLDER <p> ELEMENTS WILL GET REPLACED BY THE RESULTS -->
+         <p id="heads"></p>
+         <p id="tails"></p>
+         <!-- THIS GHOST PLACEHOLDER <ul> ELEMENT WILL GET REPLACED BY AN UNORDERED LIST RESULT -->
+         <ul id="coinlist">
+            <li>
+               <img src="assets/img/coin.png" class="bigcoin"> 
+            </li>
+         </ul>
+      </div>
+      <!-- FORM/BUTTON THAT ACTIVATES THE /APP/FLIP/CALL/ API -->
+      <div id="guesscoin" class="inactive">
+         <h1>Guess a coin flip</h1>
+         <form id="call">
+            <label for="side">Select heads or tails:</label>
+            <!-- SELECTS THE VALUE "heads" OR "tails" TO BE USED BY flipACoin() IN index.js -->
+            <select name="guess" id="guess" form="call">
+               <option value="heads">Heads</option>
+               <option value="tails">Tails</option>
+            </select>
+            <!-- INPUT TRIGGERS flipACoin() IN index.js -->
+            <input type="submit" value="Flip the Coin!">
+         </form>
+         <h2>Results:</h2>
+         <!-- THESE GHOST PLACEHOLDER <p> & <span> ELEMENTS WILL GET REPLACED BY THE RESULTS -->
+         <p><span id="choice"><span></p>
+         <p><span id="actual"><span></p>
+         <p><span id="results"><span></p>
+         <ul id="coingame">
+            <li>
+               <img src="assets/img/coin.png" class="bigcoin"> 
+            </li>
+         </ul>
+      </div>
+   </div>
 </html>
