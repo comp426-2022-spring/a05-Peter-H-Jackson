@@ -2,7 +2,7 @@
 const express = require("express")
 const fs = require("fs")
 const morgan = require("morgan")
-const args = require("util/types")
+const args = require("minimist")(process.argv.slice(2))
 const logdb = require("./src/services/database.js")
 
 // Start up app
@@ -30,7 +30,8 @@ if (args.help || args.h) {
 }
 
 // Set the server port, default is port 5000
-const port = args.port || args.p || process.env.PORT || 5555
+if (args.port === undefined) { args.port = 5555 }
+var port = args.port
 
 // If --log=false, then do not create log file
 if (args.log == 'false') {
