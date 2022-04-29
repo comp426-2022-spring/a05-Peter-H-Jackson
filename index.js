@@ -30,7 +30,7 @@ if (args.help || args.h) {
 }
 
 // Set the server port, default is port 5000
-const port = args.port || args.p || process.env.PORT || 5000
+const port = args.port || args.p || process.env.PORT || 5555
 
 // If --log=false, then do not create log file
 if (args.log == 'false') {
@@ -145,7 +145,7 @@ app.post("/app/flip/call/", (req, res, next) => {
 })
 
 // Endpoint for guessing a coin flip - using params
-app.get("/app/flip/call/:guess(heads|tails/", (req, res, next) => {
+app.get("/app/flip/call/:guess(heads|tails)/", (req, res, next) => {
     const game = flipACoin(req.params.guess)
     res.status(200).json(game)
 })
